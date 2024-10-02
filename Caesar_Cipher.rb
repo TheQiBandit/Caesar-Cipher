@@ -12,16 +12,16 @@ def caesar_cipher(string, shift_value = 4)
     #Shift only uppercase letters
     if element.between?(65, 90)
       
-      #Loop around to beginning if new ascii code is greater than alphabet code
-      new_ascii_number = (element += shift_value) > 90? element - 26: element
-      new_ascii_number
+      #Loop around to beginning if new codepoint is greater than 90 (ascii for Z)
+      (element += shift_value) > 90? element - 26: element
     
-      #Shift only lowercase letters    
+    #Shift only lowercase letters    
     elsif element.between?(97, 122)
       
-    #Loop around to beginning for lowercase letters
-      new_ascii_number = (element += shift_value) > 122? element - 26: element
-      new_ascii_number
+      #Loop around to beginning for lowercase letters
+      (element += shift_value) > 122? element - 26: element
+    
+    #keep original codepoints of non-alphabet characters
     else
       element    
     end
@@ -30,4 +30,5 @@ def caesar_cipher(string, shift_value = 4)
   #Return the new shifted ascii codes to letters, and then a string
   ciphered_text = ciphered_array.map { |element| element.chr }.join("")
 end
-pp caesar_cipher("What a string!", 5)
+
+print caesar_cipher("What a string!", 5)
